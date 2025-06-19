@@ -22,6 +22,7 @@ public class UserController {
     }
 
     @GetMapping("/me")
+    @PreAuthorize("hasRole('USER')")
     public ResponseEntity<String> currentUser() {
         return ResponseEntity.ok("User: " + SecurityContextHolder.getContext().getAuthentication().getName());
     }

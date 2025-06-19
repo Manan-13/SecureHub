@@ -52,7 +52,7 @@ public class AuthService {
                 .orElseThrow(() -> new RuntimeException("Invalid refresh token"));
 
         if (refreshToken.getExpiryDate().isBefore(Instant.now())) {
-            throw new RuntimeException("Refresh token expired");
+            throw new RuntimeException("Refresh token expired. Login again.");
         }
 
         User user = refreshToken.getUser();

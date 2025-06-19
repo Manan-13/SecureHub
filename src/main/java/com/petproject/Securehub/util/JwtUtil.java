@@ -12,10 +12,10 @@ import java.util.*;
 
 public class JwtUtil {
     private static final SecretKey SECRET_KEY;
-    private static final long EXPIRATION = 86400000; // 1 day
+    private static final long EXPIRATION = 15*60*1000; // 15 minutes
 
     private static final SecretKey REFRESH_SECRET;
-    private static final long REFRESH_EXPIRATION = 604800000; // 7 days
+    private static final long REFRESH_EXPIRATION = 86400000; // 1 day
 
     static {
         String secretString = "ThisIsAReallyStrongAndLongSecretKeyForJWTAuthentication1234567890";

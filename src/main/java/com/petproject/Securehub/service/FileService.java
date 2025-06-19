@@ -40,7 +40,16 @@ public class FileService {
     public String saveFile(MultipartFile file){
         String username = CommonUtils.getCurrentUser();
         User user = userRepository.findByUsername(username).orElseThrow();
+        if (file.getSize() > 10_000_000) {
+            throw new RuntimeException("File too large");
+        }
 
+        String contentType = file.getContentType();
+        List<String> allowed = List.of("image/png", "application/pdf", "text/plain");
+
+        if (!allowed.contains(contentType)) {
+            throw new RuntimeException("File type not allowed: " + contentType);
+        }
         File targetFile = new File(UPLOAD_DIR, file.getOriginalFilename());
         targetFile.getParentFile().mkdirs();
         try {
@@ -52,6 +61,7 @@ public class FileService {
         FileMetadata meta = new FileMetadata();
         meta.setFilename(file.getOriginalFilename());
         meta.setSize(file.getSize());
+        meta.setPath(targetFile.getPath());
         meta.setTimestamp(Instant.now());
         meta.setOwner(user);
 

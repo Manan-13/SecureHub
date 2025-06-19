@@ -7,6 +7,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import java.util.List;
+import java.util.Set;
+
 @SpringBootApplication
 public class SecurehubApplication {
 
@@ -17,8 +20,8 @@ public class SecurehubApplication {
 	@Bean
 	public CommandLineRunner runner(UserRepository userRepository) {
 		return args -> {
-			if (userRepository.findByUsername("manan").isEmpty()) {
-				userRepository.save(new User(null, "manan", "pass123", "ROLE_USER"));
+			if (userRepository.findByUsername("mananAdmin").isEmpty()) {
+				userRepository.save(new User(null, "mananAdmin", "pass123", Set.of("ROLE_ADMIN")));
 			}
 		};
 	}
