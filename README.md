@@ -1,4 +1,5 @@
 
+
 # 🚀 SecureHub – Secure Auth & File Service (Spring Boot)
 
 SecureHub is a backend service built using Spring Boot that provides a complete authentication and file upload flow. It focuses on real-world security practices, making it ideal for production use and interview portfolio demonstration.
