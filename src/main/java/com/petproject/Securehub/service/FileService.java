@@ -1,6 +1,5 @@
 package com.petproject.Securehub.service;
 
-import com.petproject.Securehub.constant.ApplicationConstant;
 import com.petproject.Securehub.entity.FileMetadata;
 import com.petproject.Securehub.entity.User;
 import com.petproject.Securehub.repository.FileMetadataRepository;
@@ -24,7 +23,6 @@ public class FileService {
     private final FileMetadataRepository fileMetadataRepository;
     private final UserRepository userRepository;
 
-
     public FileMetadata getFileIfOwner(Long fileId) {
         String username = CommonUtils.getCurrentUser();
         FileMetadata meta = fileMetadataRepository.findById(fileId)
@@ -37,7 +35,7 @@ public class FileService {
         return meta;
     }
 
-    public String saveFile(MultipartFile file){
+    public String saveFile(MultipartFile file) {
         String username = CommonUtils.getCurrentUser();
         User user = userRepository.findByUsername(username).orElseThrow();
         if (file.getSize() > 10_000_000) {

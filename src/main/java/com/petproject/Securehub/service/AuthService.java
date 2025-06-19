@@ -22,8 +22,7 @@ public class AuthService {
     private final RefreshTokenRepository refreshTokenRepository;
 
     public AuthResponse authenticate(AuthRequest request) {
-        User user = userRepository.findByUsername(request.getUsername())
-                .orElseThrow(() -> new RuntimeException("User not found"));
+        User user = userRepository.findByUsername(request.getUsername()).orElseThrow(() -> new RuntimeException("User not found"));
 
         if (!user.getPassword().equals(request.getPassword())) {
             throw new RuntimeException("Invalid password");
@@ -48,8 +47,7 @@ public class AuthService {
     }
 
     public AuthResponse refreshToken(String token) {
-        RefreshToken refreshToken = refreshTokenRepository.findByToken(token)
-                .orElseThrow(() -> new RuntimeException("Invalid refresh token"));
+        RefreshToken refreshToken = refreshTokenRepository.findByToken(token).orElseThrow(() -> new RuntimeException("Invalid refresh token"));
 
         if (refreshToken.getExpiryDate().isBefore(Instant.now())) {
             throw new RuntimeException("Refresh token expired. Login again.");

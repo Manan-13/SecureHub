@@ -17,6 +17,7 @@ public class SecurehubApplication {
 		SpringApplication.run(SecurehubApplication.class, args);
 	}
 
+
 	@Bean
 	public CommandLineRunner runner(UserRepository userRepository) {
 		return args -> {
